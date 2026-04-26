@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Big Y Locator">
+  <meta name="theme-color" content="#CC0000">
+  <title>Big Y Inventory Locator</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23CC0000' width='100' height='100' rx='20'/><text x='50' y='68' font-size='40' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'>BY</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Big Y Inventory Locator</h1>
+    <div class="search-wrap">
+      <input type="search" id="searchInput" placeholder="Search products..." autocomplete="off">
+      <button type="button" id="clearSearch" class="clear-search hidden" aria-label="Clear search">&times;</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <button id="addBtn" class="add-btn">+ Add Product</button>
+    <div id="productList" class="product-list"></div>
+    <p id="emptyState" class="empty-state">No products yet. Tap "Add Product" to get started.</p>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <h2 id="modalTitle">Add Product</h2>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" required placeholder="e.g. Whole Milk" autocomplete="off">
+        <div class="row">
+          <div class="field">
+            <label for="productAisle">Aisle</label>
+            <input type="text" id="productAisle" required placeholder="e.g. 7" autocomplete="off" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="productBay">Section</label>
+            <input type="text" id="productBay" placeholder="e.g. B" autocomplete="off">
+          </div>
+        </div>
+        <label for="productNotes">Notes (optional)</label>
+        <textarea id="productNotes" rows="2" placeholder="e.g. Top shelf, left side"></textarea>
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content confirm-content">
+      <p>Delete this product?</p>
+      <div class="modal-actions">
+        <button id="confirmCancel" class="btn-secondary">Cancel</button>
+        <button id="confirmDelete" class="btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-actions">
+    <button id="exportBtn" class="btn-data">Export Data</button>
+    <button id="importBtn" class="btn-data">Import Data</button>
+    <input type="file" id="importFile" accept=".json" hidden>
+  </div>
+
+  <footer>
+    <p>@CopyLeft Nik Alston, 2026</p>
+    <p class="version">__VERSION__</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
